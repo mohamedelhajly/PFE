@@ -1,0 +1,35 @@
+<nz-layout>
+  <nz-header>
+    <div class="logo">E-marchespublics</div>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal" style="    display: flex;
+    align-items: center;
+    justify-content: center;">
+      <li nz-menu-item [routerLink]="['/home']" routerLinkActive="ant-menu-item-selected"
+      [routerLinkActiveOptions]={exact:true}>Accueil</li>
+      <li nz-menu-item [routerLink]="['/home/offers']" routerLinkActive="ant-menu-item-selected"
+      [routerLinkActiveOptions]={exact:true}>Mes Offres</li>
+      <li nz-menu-item routerLinkActive="ant-menu-item-selected"
+      [routerLinkActiveOptions]={exact:true}>Contact Us</li>
+    </ul>
+    <div class="avatar-dropdown">
+      <div style="cursor: pointer;" (click)="toggleDropdown()">
+        <nz-avatar nzSize="large" nzIcon="user"></nz-avatar>
+      </div>
+      <div class="dropdown-menu" *ngIf="isDropdownOpen" style="    width: 220px;z-index: 999;">
+        <div class="user-info">
+          <span nz-icon nzType="user" nzTheme="outline"></span>
+          <span style="    margin-left: 10px;">{{ userName }}</span>
+        </div>
+        <div class="logout" (click)="logout()">
+          <span nz-icon nzType="logout" nzTheme="outline"></span>
+          <span style="    margin-left: 10px;">Déconnexion</span>
+        </div>
+      </div>
+    </div>
+  </nz-header>
+  <nz-content>
+    <div class="inner-content">
+      <router-outlet></router-outlet>
+    </div>
+  </nz-content>
+</nz-layout>

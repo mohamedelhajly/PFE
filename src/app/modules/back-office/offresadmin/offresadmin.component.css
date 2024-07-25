@@ -1,0 +1,28 @@
+.right{
+  flex: 1 0 70%;
+  display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: calc(100vh - 150px);
+    overflow: hidden;
+    scrollbar-gutter: stable both-edges;
+}
+
+.right:hover,
+.right:active,
+.right:focus {
+overflow-y: scroll;
+}
+
+.right::-webkit-scrollbar {
+width: 0.5em;
+}
+
+.right::-webkit-scrollbar-track {
+background-color: hsl(250 15% 93%);
+}
+
+.right::-webkit-scrollbar-thumb {
+background-color: #001529;
+border-radius: 10px;
+}

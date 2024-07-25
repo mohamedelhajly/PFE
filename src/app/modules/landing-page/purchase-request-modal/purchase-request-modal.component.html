@@ -1,0 +1,44 @@
+<!-- purchase-request-modal.component.html -->
+<form nz-form (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label>CPS</nz-form-label>
+    <nz-form-control>
+      <input type="file" (change)="handleFileUpload($event, 'CPS')" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>RC</nz-form-label>
+    <nz-form-control>
+      <input type="file" (change)="handleFileUpload($event, 'RC')" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>DA</nz-form-label>
+    <nz-form-control>
+      <input type="file" (change)="handleFileUpload($event, 'DA')" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>Estimation</nz-form-label>
+    <nz-form-control>
+      <input nz-input [(ngModel)]="purchaseRequest.estimation" name="estimation" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control>
+      <button style="    background: #001529;
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;margin-right: 428px;margin-top: 20px;" nz-button nzType="primary" (click)="showModal()">
+    <span style="font-size: large;">Postuler à cette offre</span>
+  </button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

@@ -1,0 +1,55 @@
+<nz-layout style="height: 100%;">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="logo">E-marchespublics</div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" style="    margin-top: 95px;">
+      @if (user.role=='CDP') {
+        <li nz-menu-item [routerLink]="['/dashboard']" routerLinkActive="ant-menu-item-selected"
+        [routerLinkActiveOptions]={exact:true}>
+          <span>Create offre</span>
+        </li>
+      }
+      @if (user.role=='DTI') {
+        <li nz-menu-item [routerLink]="['/dashboard/all']" routerLinkActive="ant-menu-item-selected"
+        [routerLinkActiveOptions]={exact:true}>
+          <span>Offers en cours</span>
+        </li>
+        <li nz-menu-item [routerLink]="['/dashboard/accepted']" routerLinkActive="ant-menu-item-selected"
+        [routerLinkActiveOptions]={exact:true}>
+          <span>Offres acceptées</span>
+        </li>
+        <li nz-menu-item [routerLink]="['/dashboard/decline']" routerLinkActive="ant-menu-item-selected"
+        [routerLinkActiveOptions]={exact:true}>
+          <span>Offres refusées</span>
+        </li>
+        <li nz-menu-item [routerLink]="['/dashboard/expired']" routerLinkActive="ant-menu-item-selected"
+        [routerLinkActiveOptions]={exact:true}>
+          <span>Offres expirées</span>
+        </li>
+        <li nz-menu-item  (click)="copyToClipboard(user.company.id)">
+          <span> Copier l'ID de l'entreprise <span nz-icon nzType="copy" nzTheme="outline"></span> </span>
+        </li>
+      }
+
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <!-- <span
+        class="trigger"
+        nz-icon
+        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="isCollapsed = !isCollapsed"
+      ></span> -->
+      <span
+        class="trigger"
+        nz-icon
+        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+
+      ></span>
+      <span  (click)="logout()" style="margin-left: 80%; cursor: pointer;"><span nz-icon nzType="logout" nzTheme="outline"></span> Déconnexion</span>
+    </nz-header>
+    <nz-content>
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

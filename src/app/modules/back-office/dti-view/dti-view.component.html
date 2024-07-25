@@ -1,0 +1,67 @@
+<!-- tender-list.component.html -->
+<nz-table
+  #tenderTable
+  [nzData]="tenders"
+  [nzLoading]="loading"
+  [nzTotal]="total"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="pageIndex"
+  (nzQueryParams)="onQueryParamsChange($event)"
+  nzShowSizeChanger
+  nzShowQuickJumper>
+  <thead>
+    <tr>
+      <th nzColumnKey="id" [nzSortFn]="true">ID</th>
+      <th nzColumnKey="title" [nzSortFn]="true">Titre</th>
+      <th nzColumnKey="status" [nzSortFn]="true">Status</th>
+
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tender of tenderTable.data" >
+      <td>{{ tender.id }}</td>
+      <td>{{ tender.title }}</td>
+      <td [ngClass]="{
+        'status-pending': tender.status === 'PENDING',
+        'status-accepted': tender.status === 'ACCEPTED',
+        'status-rejected': tender.status === 'REJECTED',
+        'status-expired': tender.status === 'EXPIRED'
+      }">{{ tender.status }}</td>
+
+      <td>
+        <button style="background: rgb(0, 156, 34);
+    border: none; margin-right: 10px; cursor: pointer;
+        color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 10px;" nz-button nzType="primary" (click)="updateStatus(tender, 'ACCEPTED', acceptTpl)" [disabled]="tender.status === 'ACCEPTED'">
+          <span style="color: green;font-size: bold">✔️</span> Approuver
+        </button>
+        <button style="    background: #ce0000;
+        color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 10px;
+" nz-button nzType="danger" (click)="updateStatus(tender, 'REJECTED', rejectTpl)" [disabled]="tender.status === 'REJECTED'">
+          <span style="color: rgb(210, 67, 67);">❌</span> Refuser
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<ng-template #rejectTpl>
+  <textarea nz-input
+    [(ngModel)]="rejectComment"
+    placeholder="Enter rejection reason" [nzAutosize]="{ minRows: 2, maxRows: 6 }">
+  </textarea>
+</ng-template>
+
+<ng-template #acceptTpl>
+  <p>Êtes-vous sûr de vouloir accepter cet appel d'offres ?</p>
+</ng-template>

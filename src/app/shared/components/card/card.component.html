@@ -1,0 +1,28 @@
+<div class="card" style="padding: 21px" [routerLink]="['/home',tender.id]">
+<div    style="    display: flex;
+flex-direction: column;
+gap: 10px;">
+
+  @if (tender.remainingTime.daysRemaining==0) {
+
+    <div class="badges">Done tenders</div>
+  }@else {
+    <div class="badge" style="padding: 11px;">Marché en cours </div>
+  }
+  <div class="content"  >
+    <h3 class="title">{{tender.title}}</h3>
+    <div class="details">
+      <div class="remaining-time">
+        <span class="time" style="font-size: medium;">TEMPS RESTANT</span>
+        <span class="date">{{tender.remainingTime.daysRemaining }} jours  {{tender.remainingTime.hoursRemaining }} Heurs</span>
+      </div>
+      <div>
+        <img src="assets/image-maroc.png" alt="" style="    width: 110px;">
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="arrow">
+    <span nz-icon nzType="arrow-right" nzTheme="outline"></span>
+  </div>
+</div>

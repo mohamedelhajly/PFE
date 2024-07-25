@@ -1,0 +1,42 @@
+<div class="card" style="padding: 21px" [routerLink]="['/home',tender.tender.id]">
+  <div    style="    display: flex;
+  flex-direction: column;
+  gap: 10px;">
+
+    <!-- @if (tender.remainingTime.daysRemaining==0) {
+
+      <div class="badges">Done tenders</div>
+    }@else {
+      <div class="badge" style="padding: 11px;">Marché en cours </div>
+    } -->
+    <div class="content"  >
+      <h3 class="title">{{tender.tender.title}}</h3>
+      <div class="details" style="display: flex;
+      justify-content: space-between;
+      width: 100%;
+      gap: 60px;">
+        <div class="remaining-time">
+          <span class="time" style="font-size: medium;">Publier le : {{tender.tender.acceptedAt | date}}</span>
+        </div>
+        <div style="    display: flex;
+        align-items: center;
+        justify-content: center;">
+          <h3 style="    margin-bottom: 0;">type de budget :</h3>
+          <span>{{tender.tender.budgetType}}</span>
+
+        </div>
+        <div>
+          <img src="assets/image-maroc.png" alt="" style="    width: 110px;">
+        </div>
+
+      </div>
+      <div>
+        <h3>Description:</h3>
+        <p>{{tender.tender.description}}</p>
+      </div>
+    </div>
+  </div>
+    <div class="arrow" >
+      <span nz-icon nzType="arrow-right" nzTheme="outline"></span>
+    </div>
+  </div>

@@ -1,0 +1,76 @@
+<!-- tender.component.html -->
+<div class="tender-container">
+
+  <div style="    display: flex;
+      justify-content: space-between;
+  padding: 10px;">
+      <nz-select
+      nzShowSearch
+      nzAllowClear
+      nzPlaceHolder="Select a status"
+      [(ngModel)]="status"
+      (ngModelChange)="onStatusChange()"
+      style="width: 300px; display: flex; align-items: center;">
+      <nz-option nzLabel="EN COURS" nzValue="PENDING"></nz-option>
+      <nz-option nzLabel="ACCEPTÉ" nzValue="ACCEPTED"></nz-option>
+      <nz-option nzLabel="REJETÉE" nzValue="REJECTED"></nz-option>
+      <nz-option nzLabel="EXPIRÉ" nzValue="EXPIRED"></nz-option>
+    </nz-select>
+    <button nz-button nzType="primary" (click)="showSaveTenderModal()" style="    background: #001529;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;">Ajouter un appel d'offres</button>
+  </div>
+
+
+  <nz-table
+    #tenderTable
+    [nzData]="tenders"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    [nzLoading]="loading"
+    (nzQueryParams)="onQueryParamsChange($event)"
+    [nzFrontPagination]="false"
+    [nzShowSizeChanger]="true"
+    [nzShowQuickJumper]="true"
+  >
+    <thead>
+      <tr>
+        <th nzColumnKey="title" [nzSortFn]="true">Titre</th>
+        <th nzColumnKey="description" [nzSortFn]="true">Description</th>
+        <th nzColumnKey="budgetType" [nzSortFn]="true">Type de budget</th>
+        <th nzColumnKey="estimatedAmount" [nzSortFn]="true">Montant estimé</th>
+        <th nzColumnKey="location" [nzSortFn]="true">Location</th>
+        <th nzColumnKey="sector" [nzSortFn]="true">Secteur</th>
+        <th nzColumnKey="sector" [nzSortFn]="true">status</th>
+        <th nzColumnKey=""></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tender of tenderTable.data" >
+        <td>{{ tender.title }}</td>
+        <td>{{ tender.description }}</td>
+        <td>{{ tender.budgetType }}</td>
+        <td>{{ tender.estimatedAmount }}</td>
+        <td>{{ tender.location }}</td>
+        <td>{{ tender.sector }}</td>
+        <td [ngClass]="{
+          'status-pending': tender.status === 'PENDING',
+          'status-accepted': tender.status === 'ACCEPTED',
+          'status-rejected': tender.status === 'REJECTED',
+          'status-expired': tender.status === 'EXPIRED'
+        }">{{ tender.status }}</td>
+
+        <td *ngIf="tender.status=='ACCEPTED'">
+          <button style="    background: transparent;
+          border: none;
+          cursor: pointer" [routerLink]="['/dashboard',tender.id]"><span nz-icon nzType="arrow-right" nzTheme="outline"></span></button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

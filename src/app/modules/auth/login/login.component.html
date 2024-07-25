@@ -1,0 +1,284 @@
+<div class="parent">
+  <div class="form-login" *ngIf="!isRegistering">
+    <div class="form">
+      <h1>Identifiez-vous</h1>
+      <form nz-form [formGroup]="validateLoginForm" class="login-form" (ngSubmit)="submitLoginForm()">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Veuillez entrer votre nom d'utilisateur!">
+            <nz-input-group nzPrefixIcon="user">
+              <input type="text" nz-input formControlName="userName" placeholder="Nom d'utilisateur" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Veuillez entrer votre mot de passe!">
+            <nz-input-group nzPrefixIcon="lock">
+              <input [type]="showPassword ? 'text' : 'password'" nz-input formControlName="password" placeholder="Mot de passe" />
+              <span (click)="showPassword = !showPassword" nz-icon [nzType]="showPassword ? 'eye' : 'eye-invisible'" nzTheme="outline"></span>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <button class="btn-login" (click)="submitLoginForm()">Se connecter</button>
+      </form>
+    </div>
+    <div class="registerNow">
+      <span>Pas encore de compte ?<br>Inscrivez-vous maintenant!</span>
+      <button (click)="toggleForm()" class="register-nowBtn">Inscrivez-vous maintenant!</button>
+    </div>
+  </div>
+  <div class="form-register" *ngIf="isRegistering">
+    <h1>Registre</h1>
+
+    <form *ngIf="isRegistering" nz-form [formGroup]="validateRegisterForm" class="register-form" style="width: 600px;">
+      <nz-form-item>
+        <nz-form-control>
+          <nz-radio-group formControlName="userType">
+            <label nz-radio nzValue="User" (click)="changeUserType('User')">Entreprise</label>
+            <label nz-radio nzValue="DTI" (click)="changeUserType('DTI')">DTI</label>
+            <label nz-radio nzValue="CDP" (click)="changeUserType('CDP')">CDP</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-row nzGutter="16">
+        <nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Veuillez entrer votre nom complet!">
+              <nz-input-group nzPrefixIcon="user">
+                <input type="text" nz-input formControlName="fullName" placeholder="Nom complet" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Veuillez entrer votre e-mail!">
+              <nz-input-group nzPrefixIcon="mail">
+                <input type="email" nz-input formControlName="email" placeholder="E-mail" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+
+      <nz-row nzGutter="16">
+        <nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Veuillez entrer votre numéro de téléphone!">
+              <nz-input-group nzPrefixIcon="phone">
+                <input type="text" nz-input formControlName="phoneNumber" placeholder="Numéro de téléphone" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Veuillez entrer votre mot de passe!">
+              <nz-input-group nzPrefixIcon="lock">
+                <input type="password" nz-input formControlName="password" placeholder="Mot de passe" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+
+      <nz-row nzGutter="16">
+        <nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Veuillez confirmer votre mot de passe!">
+              <nz-input-group nzPrefixIcon="lock">
+                <input type="password" nz-input formControlName="confirmPassword" placeholder="Confirmez le mot de passe" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col nzSpan="12">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Veuillez sélectionner un pays!">
+              <nz-input-group nzPrefixIcon="flag">
+                <input type="text" nz-input formControlName="avatar" placeholder="pays" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+
+      <!-- DTI specific fields -->
+      <ng-container *ngIf="validateRegisterForm.get('userType')?.value === 'DTI'">
+        <nz-row nzGutter="16">
+          <nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Veuillez entrer le nom de l'entreprise!">
+                <nz-input-group nzPrefixIcon="bank">
+                  <input type="text" nz-input formControlName="companyName" placeholder="Nom de l'entreprise" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          <nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Veuillez entrer l'adresse de l'entreprise!">
+                <nz-input-group nzPrefixIcon="home">
+                  <input type="text" nz-input formControlName="companyAddress" placeholder="Adresse de l'entreprise" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+        </nz-row>
+        <nz-row nzGutter="16">
+          <nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Veuillez entrer le rôle de l'entreprise!">
+                <nz-input-group nzPrefixIcon="team">
+                  <input type="text" nz-input formControlName="companyRole" placeholder="Rôle de l'entreprise" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          <nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Veuillez sélectionner le type de l'entreprise!">
+                <nz-select formControlName="companyType" nzPlaceHolder="Type d'entreprise">
+                  <nz-option nzValue="Private" nzLabel="Privée"></nz-option>
+                  <nz-option nzValue="Public" nzLabel="Publique"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+        </nz-row>
+        <nz-row nzGutter="16">
+          <nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Veuillez entrer la taille de l'entreprise!">
+                <nz-input-group nzPrefixIcon="usergroup-add">
+                  <input type="number" nz-input formControlName="companySize" placeholder="Taille de l'entreprise" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          <nz-col nzSpan="12"></nz-col> <!-- Empty column for alignment -->
+        </nz-row>
+      </ng-container>
+
+      <!-- CDP specific fields -->
+      <ng-container *ngIf="validateRegisterForm.get('userType')?.value === 'CDP'">
+        <nz-row nzGutter="16">
+          <nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Veuillez entrer l'ID de l'entreprise!">
+                <nz-input-group nzPrefixIcon="number">
+                  <input type="text" nz-input formControlName="companyId" placeholder="ID de l'entreprise" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+          <nz-col nzSpan="12"></nz-col> <!-- Empty column for alignment -->
+        </nz-row>
+      </ng-container>
+
+      <nz-row nzGutter="16">
+        <nz-col nzSpan="12">
+          <button class="btn-login" (click)="submitRegisterForm()">Registre</button>
+        </nz-col>
+        <nz-col nzSpan="12">
+          <button class="connecte-toi" (click)="toggleForm()">Connecte-toi maintenant!</button>
+        </nz-col>
+      </nz-row>
+    </form>
+  </div>
+
+
+  <!-- <form *ngIf="isRegistering" nz-form [formGroup]="validateRegisterForm" class="register-form" (ngSubmit)="submitRegisterForm()" style="width: 300px;">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your full name!">
+        <nz-input-group nzPrefixIcon="user">
+          <input type="text" nz-input formControlName="fullName" placeholder="Full Name" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your email!">
+        <nz-input-group nzPrefixIcon="mail">
+          <input type="email" nz-input formControlName="email" placeholder="Email" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your phone number!">
+        <nz-input-group nzPrefixIcon="phone">
+          <input type="text" nz-input formControlName="phoneNumber" placeholder="Phone Number" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="Password" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please confirm your password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="confirmPassword" placeholder="Confirm Password" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please select an avatar!">
+        <nz-input-group nzPrefixIcon="smile">
+          <input type="text" nz-input formControlName="avatar" placeholder="Avatar" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <button nz-button class="register-form-button" [nzType]="'primary'">Register</button>
+    Or
+    <a (click)="toggleForm()">log in now!</a>
+  </form> -->
+
+</div>
+
+
+
+
+
+
+
+<!-- bubble -->
+<div class="container">
+  <div class="bubble">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
+  <div class="bubble">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
+  <div class="bubble">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
+  <div class="bubble">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
+  <div class="bubble">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
+</div>

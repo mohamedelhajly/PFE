@@ -1,0 +1,288 @@
+.container-global {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+  /* height: calc(100vh - 85px); */
+}
+.inputes {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  background: white;
+  padding: 5px 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 4px -4px #001529;
+}
+.line {
+  width: 6px;
+  background: #001529;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+}
+
+.card-container {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  max-height: calc(100vh - 215px);
+  /* overflow-y: auto; */
+  overflow: hidden;
+  scrollbar-gutter: stable both-edges;
+}
+
+.card-container:hover,
+.card-container:active,
+.card-container:focus {
+  overflow-y: scroll;
+}
+
+.card-container::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.card-container::-webkit-scrollbar-track {
+  background-color: hsl(250 15% 93%);
+}
+
+.card-container::-webkit-scrollbar-thumb {
+  background-color: #127682;
+  border-radius: 10px;
+}
+
+.content {
+  display: flex;
+  gap: 10px;
+  height: 100%;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+.sideBar {
+  background: #ffffff;
+  max-width: 310px;
+  min-width: 310px;
+  flex: 1 0 20%;
+  border-radius: 0px 10px 10px 0px;
+  padding: 20px 10px 10px 20px;
+  height: calc(100vh - 150px);
+  overflow: hidden;
+  scrollbar-gutter: stable both-edges;
+}
+.sideBar:hover,
+.sideBar:active,
+.sideBar:focus {
+  overflow-y: scroll;
+}
+
+.sideBar::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.sideBar::-webkit-scrollbar-track {
+  background-color: hsl(250 15% 93%);
+}
+
+.sideBar::-webkit-scrollbar-thumb {
+  background-color: #127682;
+  border-radius: 10px;
+}
+
+.search-btn {
+  background: #001529;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.card-container app-dynamic-card {
+  flex: 1 1 calc(100% - 16px);
+  box-sizing: border-box;
+}
+
+@media (min-width: 600px) {
+  .card-container app-dynamic-card {
+    flex: 1 1 calc(50% - 16px);
+  }
+}
+
+@media (min-width: 900px) {
+  .card-container app-dynamic-card {
+    /* flex: 1 1 calc(33.333% - 16px); */
+    flex: 1 1 calc(50% - 16px);
+  }
+}
+
+.ant-select.searchSelect {
+  border: none;
+}
+
+::ng-deep.ant-input-affix-wrapper {
+  border: none;
+}
+
+::ng-deep
+  .searchSelect.ant-select-focused:not(.ant-select-disabled).ant-select:not(
+    .ant-select-customize-input
+  )
+  .ant-select-selector {
+  box-shadow: none;
+}
+::ng-deep.ant-input-affix-wrapper:focus {
+  border-color: transparent;
+  box-shadow: none;
+  border-right-width: 0px;
+  outline: 0;
+}
+::ng-deep.ant-input-affix-wrapper-focused {
+  border-color: transparent;
+  box-shadow: none;
+  border-right-width: 0px;
+  outline: 0;
+}
+::ng-deep.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+  border-color: transparent;
+  border-right-width: 0px;
+  z-index: 1;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.nz-tag {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nz-tag-checked {
+  background-color: #36cfc9;
+  color: #fff;
+}
+
+::ng-deep.ant-select {
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+}
+::ng-deep .ant-tag {
+  color: var(--primary-color);
+  height: 35px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+::ng-deep .ant-tag-checkable {
+  border: 1px solid #e1e1e1;
+  border-radius: 15px;
+}
+::ng-deep .ant-tag-checkable:not(.ant-tag-checkable-checked):hover {
+  color: #001529;
+}
+::ng-deep.ant-tag-checkable:active {
+  background-color: #001529;
+}
+
+::ng-deep .ant-tag-checkable-checked {
+  background-color: #001529;
+}
+::ng-deep .ant-tag-checkable-checked {
+  color: #ffffff;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  column-gap: 15px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+::ng-deep .ant-checkbox-wrapper + .ant-checkbox-wrapper {
+  margin-left: 0;
+}
+
+.right{
+  flex: 1 0 70%;
+  display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: calc(100vh - 120px);
+    overflow: hidden;
+    scrollbar-gutter: stable both-edges;
+}
+
+.right:hover,
+.right:active,
+.right:focus {
+overflow-y: scroll;
+}
+
+.right::-webkit-scrollbar {
+width: 0.5em;
+}
+
+.right::-webkit-scrollbar-track {
+background-color: hsl(250 15% 93%);
+}
+
+.right::-webkit-scrollbar-thumb {
+background-color: #001529;
+border-radius: 10px;
+}
+
+
+
+.left{
+  flex: 1 0 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  height: 700px;
+}
+
+.btn-primary {
+  background: #001529;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+.btn-primary:hover{
+  opacity: 0.8;
+}
+.btn-secondary{
+  background: white;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 10px;
+  color: black;
+  cursor: pointer;
+}
+.btn-secondary:hover{
+  opacity: 0.8;
+}

@@ -1,0 +1,67 @@
+<h3 style="margin-left: 314px;">
+  les offres auxquelles les entreprises ont postulé
+</h3>
+
+<!-- offresadmin.component.html -->
+<nz-table
+  #basicTable
+  [nzData]="listOfData"
+  [nzLoading]="loading"
+  [nzTotal]="total"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="pageIndex"
+  (nzPageIndexChange)="onPageIndexChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)"
+  [nzFrontPagination]="false"
+>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Email</th>git push -u origin main
+      <th>Offre Titre</th>
+      <th>Status</th>
+      <th>Estimation</th>
+      <th>budget type</th>
+      <th>CPS</th>
+      <th>RC</th>
+      <th>DA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.user.fullName }}</td>
+      <td>{{ data.user.email }}</td>
+      <td>{{ data.tender.title }}</td>
+      <td>{{ data.status }}</td>
+      <td>{{ data.estimation }}</td>
+      <td>{{ data.tender.budgetType }}</td>
+      <td>
+        <div style="display: flex;
+        align-items: center;
+        justify-content: center;">
+          <span nz-icon nzType="cloud-download" nzTheme="outline"></span>
+          <a (click)="downloadFile(data.cps)">Download CPS</a>
+        </div>
+      </td>
+      <td>
+        <div style="display: flex;
+        align-items: center;
+        justify-content: center;">
+        <span nz-icon nzType="cloud-download" nzTheme="outline"></span>
+        <a (click)="downloadFile(data.rc)"> Download RC</a>
+        
+      </div>
+      </td>
+      <td>
+        <div style="display: flex;
+        align-items: center;
+        justify-content: center;">
+        <span nz-icon nzType="cloud-download" nzTheme="outline"></span> 
+        <a (click)="downloadFile(data.da)"> Download DA</a>
+
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+

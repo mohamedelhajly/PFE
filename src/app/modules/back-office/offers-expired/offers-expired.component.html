@@ -1,0 +1,50 @@
+<!-- tender-list.component.html -->
+<nz-table
+  #tenderTable
+  [nzData]="tenders"
+  [nzLoading]="loading"
+  [nzTotal]="total"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="pageIndex"
+  (nzQueryParams)="onQueryParamsChange($event)"
+  nzShowSizeChanger
+  nzShowQuickJumper>
+  <thead>
+    <tr>
+      <th nzColumnKey="id" [nzSortFn]="true">ID</th>
+      <th nzColumnKey="title" [nzSortFn]="true">Titre</th>
+      <th nzColumnKey="status" [nzSortFn]="true">Status</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tender of tenderTable.data">
+      <td>{{ tender.id }}</td>
+      <td>{{ tender.title }}</td>
+      <td [ngClass]="{
+        'status-pending': tender.status === 'PENDING',
+        'status-accepted': tender.status === 'ACCEPTED',
+        'status-rejected': tender.status === 'REJECTED',
+        'status-expired': tender.status === 'EXPIRED'
+      }">{{ tender.status }}</td>
+
+      <td >
+        <button style="    background: transparent;
+        border: none;
+        cursor: pointer" [routerLink]="['/dashboard',tender.id]"><span nz-icon nzType="arrow-right" nzTheme="outline"></span></button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<ng-template #rejectTpl>
+  <textarea nz-input
+    [(ngModel)]="rejectComment"
+    placeholder="Enter rejection reason">
+  </textarea>
+</ng-template>
+
+<ng-template #acceptTpl>
+  <p>Êtes-vous sûr de vouloir accepter cet appel d'offres ?</p>
+</ng-template>
