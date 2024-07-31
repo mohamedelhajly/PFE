@@ -75,7 +75,7 @@ export class OffersComponent implements OnInit {
 
   showSaveTenderModal(): void {
     const modal = this.modalService.create({
-      nzTitle: 'Enregistrer un offere',
+      nzTitle: 'Enregistrer un offre',
       nzContent: SaveTenderModalComponent,
       nzFooter: null,
       nzWidth: 800

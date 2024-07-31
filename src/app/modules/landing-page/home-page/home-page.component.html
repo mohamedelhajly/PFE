@@ -2,7 +2,8 @@
 <div class="container">
   <div class="left">
     <div class="Sector">
-      <h3 style="font-size: medium;margin-left: 59px;">Secteur de l'entreprise</h3>
+      <h3 style="font-size: medium;margin-left: 69px;
+    font-style: oblique;">Secteur de l'entreprise</h3>
       <div class="tags" style=" margin-left: 18px;margin-top: 40px;">
         <nz-tag
           *ngFor="let sector of companySectors"
@@ -19,8 +20,9 @@
       <button class="btn-secondary" (click)="clearAllFilters()">
         Actualiser
       </button>
-      <button class="btn-primary" (click)="showMatches()">
-        Afficher
+      <button class="btn-primary" (click)="showMatches()" style="padding-right: 23px;
+    padding-left: 23px;">
+        Filter
       </button>
     </div>
     <img src="assets/images/er.png" alt="">

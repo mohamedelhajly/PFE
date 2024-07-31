@@ -11,8 +11,18 @@
   nzShowQuickJumper>
   <thead>
     <tr>
-      <th nzColumnKey="id" [nzSortFn]="true">ID</th>
+      <!-- <th nzColumnKey="id" [nzSortFn]="true">ID</th> -->
       <th nzColumnKey="title" [nzSortFn]="true">Titre</th>
+      <th nzColumnKey="title" [nzSortFn]="true">Description</th>
+      <th nzColumnKey="title" [nzSortFn]="true">Type de Budget</th>
+      <!-- <th nzColumnKey="title" [nzSortFn]="true">Operation</th> -->
+      <!-- <th nzColumnKey="title" [nzSortFn]="true">Situation</th> -->
+      <th nzColumnKey="title" [nzSortFn]="true">Prestation</th>
+      <th nzColumnKey="title" [nzSortFn]="true">Pourcentage de caution</th>
+      <th nzColumnKey="title" [nzSortFn]="true">Montant estimé</th>
+      <th nzColumnKey="title" [nzSortFn]="true">Location</th>
+      <th nzColumnKey="title" [nzSortFn]="true">Secteur</th>
+
       <th nzColumnKey="status" [nzSortFn]="true">Status</th>
 
       <th>Actions</th>
@@ -20,8 +30,18 @@
   </thead>
   <tbody>
     <tr *ngFor="let tender of tenderTable.data" >
-      <td>{{ tender.id }}</td>
+      <!-- <td>{{ tender.id }}</td> -->
       <td>{{ tender.title }}</td>
+      <td>{{ tender.description }}</td>
+      <td>{{ tender.budgetType }}</td>
+      <!-- <td>{{ tender.operation }}</td> -->
+      <!-- <td>{{ tender.situation }}</td> -->
+      <td>{{ tender.prestation }}</td>
+      <td>{{ tender.cautionPercentage }}</td>
+      <td>{{ tender.estimatedAmount }}</td>
+      <td>{{ tender.location }}</td>
+      <td>{{ tender.sector }}</td>
+      
       <td [ngClass]="{
         'status-pending': tender.status === 'PENDING',
         'status-accepted': tender.status === 'ACCEPTED',
@@ -38,7 +58,7 @@
         border: none;
         cursor: pointer;
         border-radius: 10px;" nz-button nzType="primary" (click)="updateStatus(tender, 'ACCEPTED', acceptTpl)" [disabled]="tender.status === 'ACCEPTED'">
-          <span style="color: green;font-size: bold">✔️</span> Approuver
+          <span style="color: green;font-size: bold">✔️</span>Approuver
         </button>
         <button style="    background: #ce0000;
         color: white;
@@ -47,8 +67,9 @@
         border: none;
         cursor: pointer;
         border-radius: 10px;
+        padding-right: 27px;
 " nz-button nzType="danger" (click)="updateStatus(tender, 'REJECTED', rejectTpl)" [disabled]="tender.status === 'REJECTED'">
-          <span style="color: rgb(210, 67, 67);">❌</span> Refuser
+          <span style="color: rgb(210, 67, 67); font-size: bold">❌</span>  Refuser
         </button>
       </td>
     </tr>
