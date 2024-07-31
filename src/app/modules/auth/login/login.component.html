@@ -47,7 +47,9 @@
     <form *ngIf="isRegistering" nz-form [formGroup]="validateRegisterForm" class="register-form" style="width: 600px;">
       <nz-form-item>
         <nz-form-control>
-          <h1>Registre</h1>
+          <h1 style="display: flex;
+          flex-direction: column;
+          align-items: center;">Registre</h1>
           <nz-radio-group formControlName="userType">
             <label nz-radio nzValue="User" (click)="changeUserType('User')">Entreprise</label>
             <label nz-radio nzValue="DTI" (click)="changeUserType('DTI')">DTI</label>
