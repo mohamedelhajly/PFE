@@ -1,0 +1,110 @@
+<!-- tender-list.component.html -->
+<nz-table
+  #tenderTable
+  [nzData]="tenders"
+  [nzLoading]="loading"
+  [nzTotal]="total"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="pageIndex"
+  (nzQueryParams)="onQueryParamsChange($event)"
+  nzShowSizeChanger
+  nzShowQuickJumper>
+  <thead>
+    <tr>
+      <th nzColumnKey="id" >ID</th>
+      <th nzColumnKey="title" [nzSortFn]="true">Titre</th>
+      <th nzColumnKey="title" [nzSortFn]="true">Status</th>
+      <th nzColumnKey="status" [nzSortFn]="true">Action</th>
+      <!-- <th nzColumnKey="createdAt" [nzSortFn]="true">Status</th> -->
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tender of tenderTable.data">
+      <td>{{ tender.id }}</td>
+      <td>{{ tender.title }}</td>
+      
+      <td [ngClass]="{
+        'status-pending': tender.status === 'PENDING',
+        'status-accepted': tender.status === 'ACCEPTED',
+        'status-rejected': tender.status === 'REJECTED',
+        'status-expired': tender.status === 'EXPIRED'
+      }">{{ tender.status }}</td>
+      <!-- <td >
+        <button style="background: transparent;
+        border: none;
+        cursor: pointer" [routerLink]="['/dashboard',tender.id]"><span nz-icon nzType="arrow-right" nzTheme="outline"></span></button>
+      </td> -->
+      <!-- <td><button nz-button nzType="primary" (click)="showGenerateModal(tender)">GENERER</button></td> -->
+
+      <td><button style="background: rgb(7, 134, 34);
+    border: none; margin-right: 10px; cursor: pointer;
+        color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 10px;" nz-button nzType="primary" (click)="showGenerateModal(tender)">
+          <span nz-icon nzType="cloud-download" nzTheme="outline"></span>GENERER
+        </button></td>
+
+
+
+        
+
+
+
+
+
+
+    </tr>
+  </tbody>
+</nz-table>
+
+<ng-template #rejectTpl>
+  <textarea nz-input
+    [(ngModel)]="rejectComment"
+    placeholder="Enter rejection reason">
+  </textarea>
+</ng-template>
+
+<ng-template #acceptTpl>
+  <p>Êtes-vous sûr de vouloir accepter cet appel d'offres ?</p>
+</ng-template>
+
+<!-- <ng-template #generateTpl>
+    <p>Voici les Documents</p>
+    <nz-modal
+        [(nzVisible)]="isDocumentListVisible"
+        nzTitle="Choisir un document à télécharger"
+        (nzOnCancel)="handleCancel()"
+        [nzFooter]="null"
+      >
+        <ng-container *nzModalContent>
+          <nz-list [nzDataSource]="documents" nzBordered nzSize="large">
+            <nz-list-item *ngFor="let doc of documents">
+              {{ doc.name }}
+              <ul nz-list-item-actions>
+                <nz-list-item-action>
+                  <a (click)="downloadDocument(doc)">Télécharger</a>
+                </nz-list-item-action>
+              </ul>
+            </nz-list-item>
+          </nz-list>
+        </ng-container>
+      </nz-modal>
+
+  </ng-template> -->
+  <ng-template #generateTpl>
+    <p class="custom-modal-title">Voici les Documents</p>
+    <nz-list [nzDataSource]="documents" nzBordered nzSize="large">
+      <nz-list-item *ngFor="let doc of documents">
+        {{ doc.name }}
+        <ul nz-list-item-actions>
+          <nz-list-item-action>
+            <a (click)="downloadDocument(doc)"><span nz-icon nzType="download" nzTheme="outline"></span> Télécharger</a>
+          </nz-list-item-action>
+        </ul>
+      </nz-list-item>
+    </nz-list>
+  </ng-template>

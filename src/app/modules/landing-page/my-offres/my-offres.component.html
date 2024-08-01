@@ -1,5 +1,5 @@
 <!-- <hr> -->
-<h1 class="custom-underline"> Mes Offres</h1>
+<h1 class="custom-underline" style="margin-left: 6px;"> Mes Offres</h1>
 <div class="right" (scroll)="onScroll($event)">
   @for (tender  of tenders; track $index) {
     <app-card-offre [tender]="tender"></app-card-offre>

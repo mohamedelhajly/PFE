@@ -25,6 +25,12 @@
         [routerLinkActiveOptions]={exact:true}>
           <span>Offres expirées</span>
         </li>
+
+        <li nz-menu-item [routerLink]="['/dashboard/lettre']" routerLinkActive="ant-menu-item-selected"
+        [routerLinkActiveOptions]={exact:true}>
+          <span>Les Lettres</span>
+        </li>
+        
         <li nz-menu-item  (click)="copyToClipboard(user.company.id)">
           <span> Copier l'ID de l'entreprise <span nz-icon nzType="copy" nzTheme="outline"></span> </span>
         </li>

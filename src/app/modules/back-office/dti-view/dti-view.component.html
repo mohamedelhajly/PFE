@@ -71,6 +71,17 @@
 " nz-button nzType="danger" (click)="updateStatus(tender, 'REJECTED', rejectTpl)" [disabled]="tender.status === 'REJECTED'">
           <span style="color: rgb(210, 67, 67); font-size: bold">❌</span>  Refuser
         </button>
+        <button style="    background: #f2b306;
+        color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 10px;
+        padding-right: 31px;
+" nz-button nzType="danger" (click)="updateStatuss(tender, 'REJECTED', rejectTpl1)" [disabled]="tender.status === 'REJECTED'">
+          <span style="padding-right: 2px;" nz-icon nzType="comment" nzTheme="outline"></span> Anuller
+        </button>
       </td>
     </tr>
   </tbody>
@@ -79,10 +90,20 @@
 <ng-template #rejectTpl>
   <textarea nz-input
     [(ngModel)]="rejectComment"
-    placeholder="Enter rejection reason" [nzAutosize]="{ minRows: 2, maxRows: 6 }">
+    placeholder="Entrer la raison" [nzAutosize]="{ minRows: 2, maxRows: 6 }">
   </textarea>
 </ng-template>
 
 <ng-template #acceptTpl>
   <p>Êtes-vous sûr de vouloir accepter cet appel d'offres ?</p>
 </ng-template>
+
+
+<ng-template #rejectTpl1>
+  <p class="custom-modal-title">Les Remarques</p>
+  <textarea nz-input
+    [(ngModel)]="rejectComment"
+    placeholder="Taper les remarques..." [nzAutosize]="{ minRows: 2, maxRows: 6 }">
+  </textarea>
+</ng-template>
+

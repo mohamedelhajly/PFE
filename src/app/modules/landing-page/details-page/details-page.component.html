@@ -46,7 +46,19 @@ margin-bottom: 10px; ">
           <h3><span nz-icon nzType="apartment" nzTheme="outline"></span> Opération : <span class="green-text">{{data.operation}}</span></h3>
           <h3><span nz-icon nzType="book" nzTheme="outline"></span> Situation : <span class="green-text">{{data.situation}}</span></h3>
           <h3><span nz-icon nzType="paper-clip" nzTheme="outline"></span> Prestation : <span class="green-text">{{data.prestation}}</span></h3>
+          <div> <button style="background: rgb(7, 134, 34);
+            border: none; margin-right: 10px; cursor: pointer;
+                color: white;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: none;
+                cursor: pointer;
+                border-radius: 10px;" nz-button nzType="primary" (click)="showGenerateModal(data)">
+                  <span style="font-size: large;" nz-icon nzType="cloud-download" nzTheme="outline"></span> Genrer
+                </button>
         </div>
+
+
       </div>
 <!-- purchase-request.component.html -->
 <div style="    display: flex;
@@ -61,7 +73,11 @@ align-items: center;;">
   border-radius: 10px;margin-top: 20px;" nz-button nzType="primary" (click)="showModal()">
     <span style="font-size: large;">Postuler à cette offre</span>
   </button>
-</div>
+
+ 
+
+
+
 
 
 <nz-modal
@@ -154,4 +170,23 @@ align-items: center;;">
   </form>
 </ng-container>
 </nz-modal>
+
+
+<ng-template #generateTpl>
+  <p class="custom-modal-title">Voici les Documents</p>
+  <nz-list [nzDataSource]="documents" nzBordered nzSize="large">
+    <nz-list-item *ngFor="let doc of documents">
+      {{ doc.name }}
+      <ul nz-list-item-actions>
+        <nz-list-item-action>
+          <a (click)="downloadDocument(doc)"><span nz-icon nzType="download" nzTheme="outline"></span> Télécharger</a>
+        </nz-list-item-action>
+      </ul>
+    </nz-list-item>
+  </nz-list>
+</ng-template> 
+
 </div>
+
+
+

@@ -10,11 +10,12 @@ import { TenderServiceService } from '../../../shared/tender-service.service';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-dti-view',
   standalone: true,
-  imports: [NzSelectModule, CommonModule,NzModalModule,NzMessageModule,NzTableModule , FormsModule ,RouterModule,NzInputModule],
+  imports: [NzSelectModule, CommonModule,NzModalModule,NzMessageModule,NzTableModule , FormsModule ,RouterModule,NzInputModule, NzIconModule],
   templateUrl: './dti-view.component.html',
   styleUrl: './dti-view.component.css'
 })
@@ -127,4 +128,31 @@ export class DtiViewComponent implements OnInit {
       }
     );
   }
+
+
+  updateStatuss(tender: any, newStatus: 'ACCEPTED' | 'REJECTED', tpl: TemplateRef<{}>): void {
+    const isRejected = newStatus === 'REJECTED';
+
+    if (isRejected) {
+      this.showAnullerModal(tender, tpl);
+    } else {
+      this.showAcceptModal(tender, tpl);
+    }
+  }
+
+  private showAnullerModal(tender: any, tpl: TemplateRef<{}>): void {
+    this.modalService.confirm({
+      nzContent: tpl,
+      nzOnOk: () =>
+        new Promise<void>((resolve, reject) => {
+          if (!this.rejectComment.trim()) {
+            this.message.error('Les Remarques...');
+            reject();
+            return;
+          }
+          this.performStatusUpdate(tender, 'REJECTED', this.rejectComment, resolve, reject);
+        })
+    });
+  }
+
 }

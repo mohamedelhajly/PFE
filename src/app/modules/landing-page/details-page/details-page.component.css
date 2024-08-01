@@ -75,3 +75,14 @@
   }
 
 
+
+  .custom-modal-title {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+
+

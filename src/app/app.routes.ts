@@ -14,6 +14,7 @@ import { OffersExpiredComponent } from './modules/back-office/offers-expired/off
 import { OffersAcceptedComponent } from './modules/back-office/offers-accepted/offers-accepted.component';
 import { OffersDeclineComponent } from './modules/back-office/offers-decline/offers-decline.component';
 import { OffresadminComponent } from './modules/back-office/offresadmin/offresadmin.component';
+import { lettre } from './modules/back-office/lettre/lettre.component';
 
 export const routes: Routes = [
   {
@@ -48,6 +49,7 @@ export const routes: Routes = [
       { path: 'accepted', component: OffersAcceptedComponent ,},
       { path: 'decline', component: OffersDeclineComponent ,},
       { path: 'expired', component: OffersExpiredComponent ,},
+      { path: 'lettre', component: lettre ,},
       { path: ':id', component: OffresadminComponent ,},
     ]
 
