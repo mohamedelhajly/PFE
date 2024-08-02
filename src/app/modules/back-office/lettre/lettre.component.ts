@@ -33,9 +33,9 @@ export class lettre implements OnInit{
   isDocumentListVisible = false;
   documents = [
     { name: 'Avis.docx', path: 'assets/documents/1.doc' },
-    { name: 'Lettre commission.docx', path: 'assets/documents/2.doc' },
-    { name: 'Lettre Journal.docx', path: 'assets/documents/3.doc' },
-    { name: 'Convocation.docx', path: 'assets/documents/4.doc' },
+    { name: 'Lettre commission.docx', path: 'assets/documents/2.docx' },
+    { name: 'Lettre Journal.docx', path: 'assets/documents/3.docx' },
+    { name: 'Convocation.docx', path: 'assets/documents/4.docx' },
   ];
 
   constructor(

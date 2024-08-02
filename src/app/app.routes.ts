@@ -4,7 +4,6 @@ import { HomePageComponent } from './modules/landing-page/home-page/home-page.co
 import { LayoutComponent } from './core/layout/layout.component';
 import { MyOffresComponent } from './modules/landing-page/my-offres/my-offres.component';
 import { DashbordLayoutComponent } from './core/dashbord-layout/dashbord-layout.component';
-import { CardComponent } from './shared/components/card/card.component';
 import { UserLoginComponent } from './modules/auth/user-login/user-login.component';
 import { OffersComponent } from './modules/back-office/offers/offers.component';
 import { DtiViewComponent } from './modules/back-office/dti-view/dti-view.component';
@@ -15,6 +14,7 @@ import { OffersAcceptedComponent } from './modules/back-office/offers-accepted/o
 import { OffersDeclineComponent } from './modules/back-office/offers-decline/offers-decline.component';
 import { OffresadminComponent } from './modules/back-office/offresadmin/offresadmin.component';
 import { lettre } from './modules/back-office/lettre/lettre.component';
+import {ContactComponent } from './modules/back-office/contact-us/contact.component';
 
 export const routes: Routes = [
   {
@@ -32,6 +32,7 @@ export const routes: Routes = [
     children: [
       { path: '', component: HomePageComponent ,},
       { path: 'offers', component: MyOffresComponent , canActivate:[authGuard]},
+      { path: 'contact', component: ContactComponent , canActivate:[authGuard]},
       { path: ':id', component: DetailsPageComponent, canActivate:[authGuard]},
     ]
 

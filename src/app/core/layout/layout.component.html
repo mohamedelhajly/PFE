@@ -6,9 +6,11 @@
     justify-content: center;">
       <li nz-menu-item [routerLink]="['/home']" routerLinkActive="ant-menu-item-selected"
       [routerLinkActiveOptions]={exact:true}>Accueil</li>
+
       <li nz-menu-item [routerLink]="['/home/offers']" routerLinkActive="ant-menu-item-selected"
       [routerLinkActiveOptions]={exact:true}>Mes Offres</li>
-      <li nz-menu-item routerLinkActive="ant-menu-item-selected"
+
+      <li nz-menu-item [routerLink]="['/home/contact']" routerLinkActive="ant-menu-item-selected"
       [routerLinkActiveOptions]={exact:true}>Contact Us</li>
     </ul>
     <div class="avatar-dropdown">

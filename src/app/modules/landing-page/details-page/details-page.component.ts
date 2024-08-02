@@ -30,8 +30,8 @@ export class DetailsPageComponent  implements OnInit {
   documents = [
     { name: 'Avis.docx', path: 'assets/documents/1.doc' },
     { name: 'Lettre commission.docx', path: 'assets/documents/2.doc' },
-    { name: 'Lettre Journal.docx', path: 'assets/documents/3.doc' },
-    { name: 'Convocation.docx', path: 'assets/documents/4.doc' },
+    { name: 'Lettre Journal.docx', path: 'assets/documents/3.docx' },
+    { name: 'Convocation.docx', path: 'assets/documents/4.docx' },
   ];
 
   purchaseRequest:any = {
